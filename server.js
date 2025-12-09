@@ -129,6 +129,7 @@ app.use('/settings', settingsRoutes);
 app.use('/teacher', teacherRoutes); // Teacher routes
 app.use('/payments', require('./app/routes/paymentRoutes')); // Payment routes
 app.use('/attendance', require('./app/routes/attendanceRoutes')); // Attendance routes
+app.use('/finance', require('./app/routes/financeRoutes')); // Finance routes
 
 // Protected routes with role restrictions
 app.use('/admin', roleMiddleware.restrictTo('Super Admin', 'Admin'), adminRoutes);

@@ -77,6 +77,13 @@ class Payment {
         );
         return result.affectedRows > 0;
     }
+
+    static async getTotalRevenue() {
+        const [rows] = await db.execute(
+            "SELECT SUM(amount) as total FROM payments WHERE status = 'completed'"
+        );
+        return rows[0].total || 0;
+    }
 }
 
 module.exports = Payment;

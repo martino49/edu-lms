@@ -1,0 +1,98 @@
+<%- include('../partials/header') %>
+    <%- include('../partials/sidebar') %>
+
+        <main class="main-content">
+            <div
+                class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Finance Dashboard</h1>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <div class="btn-group me-2">
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Export Revenue</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Print Report</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="row mb-4">
+                <div class="col-md-4 mb-4">
+                    <div class="card bg-primary text-white h-100 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Total Revenue</h5>
+                            <p class="display-6 fw-bold">$<%= totalRevenue ? Number(totalRevenue).toFixed(2) : '0.00' %>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card bg-success text-white h-100 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Completed Payments</h5>
+                            <!-- Placeholder count, in real app pass this data -->
+                            <p class="display-6 fw-bold">--</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card bg-warning text-dark h-100 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Pending Refunds</h5>
+                            <p class="display-6 fw-bold">
+                                <%= pendingRefunds ? pendingRefunds.length : 0 %>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Payments -->
+            <h3 class="mb-3">Recent Payments</h3>
+            <div class="table-responsive shadow-sm rounded">
+                <table class="table table-hover align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Student</th>
+                            <th scope="col">Course</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if (recentPayments && recentPayments.length> 0) { %>
+                            <% recentPayments.forEach(payment=> { %>
+                                <tr>
+                                    <td>
+                                        <span class="text-muted">#<%= payment.id %></span>
+                                    </td>
+                                    <td>
+                                        <%= payment.student_name %>
+                                    </td>
+                                    <td>
+                                        <%= payment.course_title %>
+                                    </td>
+                                    <td class="fw-bold">$<%= Number(payment.amount).toFixed(2) %>
+                                    </td>
+                                    <td>
+                                        <%= new Date(payment.created_at).toLocaleDateString() %>
+                                    </td>
+                                    <td>
+                                        <span
+                                            class="badge rounded-pill bg-<%= payment.status === 'completed' ? 'success' : (payment.status === 'refunded' ? 'warning' : 'danger') %>">
+                                            <%= payment.status.charAt(0).toUpperCase() + payment.status.slice(1) %>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <% }); %>
+                                    <% } else { %>
+                                        <tr>
+                                            <td colspan="6" class="text-center py-4">No recent payments found.</td>
+                                        </tr>
+                                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+
+        <%- include('../partials/footer') %>

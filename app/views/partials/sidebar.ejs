@@ -1,6 +1,6 @@
 <!-- Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-<link rel="stylesheet" href="/css/responsive.css">
+<link rel="stylesheet" href="/public/css/responsive.css">
 
 <!-- Overlay for mobile (click outside to close) -->
 <div class="sidebar-overlay" data-sidebar-overlay></div>
@@ -10,46 +10,46 @@
   <i class="fas fa-bars"></i>
 </div>
 
-<script src="/js/responsive.js" defer></script>
+<script src="/public/js/responsive.js" defer></script>
 
 <div class="layout">
   <nav class="sidebar" data-sidebar data-sidebar-state="visible" aria-label="Main navigation">
     <a href="/" class="brand">
-      <i class="fas fa-graduation-cap" aria-hidden="true"></i> 
+      <i class="fas fa-graduation-cap" aria-hidden="true"></i>
       <span>EDU LMS</span>
     </a>
-    
+
     <hr aria-hidden="true">
-    
+
     <ul class="nav">
       <% if (menuItems && menuItems.length) { %>
-        <% menuItems.forEach(item => { %>
+        <% menuItems.forEach(item=> { %>
           <li>
-            <a href="<%= item.url %>" 
-               class="nav-link <%= activePage === item.page ? 'active' : '' %>"
-               aria-current="<%= activePage === item.page ? 'page' : 'false' %>">
-              <i class="fas fa-<%= item.icon %>" aria-hidden="true"></i> 
-              <span><%= item.label %></span>
+            <a href="<%= item.url %>" class="nav-link <%= activePage === item.page ? 'active' : '' %>"
+              aria-current="<%= activePage === item.page ? 'page' : 'false' %>">
+              <i class="fas fa-<%= item.icon %>" aria-hidden="true"></i>
+              <span>
+                <%= item.label %>
+              </span>
             </a>
           </li>
-        <% }) %>
-      <% } %>
+          <% }) %>
+            <% } %>
     </ul>
 
     <div class="sidebar-footer">
       <a href="/auth/logout">
-        <i class="fas fa-sign-out-alt" aria-hidden="true"></i> 
+        <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
         <span>Log Out</span>
       </a>
       <p class="logout-text">Secure your leadership</p>
     </div>
-    
+
     <hr aria-hidden="true">
-    
+
     <div class="user-wrap">
       <a href="/settings/profile" class="avatar">
-        <% if (user && user.name) {
-            let parts = user.name.split(' ');
+        <% if (user && user.name) { let parts=user.name.split(' ');
             let initials = parts.map(p => p[0]).join('').toUpperCase();
         %>
           <div class="avatar-initials" aria-hidden="true"><%= initials %></div>
@@ -60,12 +60,12 @@
       </a>
       <div style="display:flex;flex-direction:column; padding-left: 8px;">
         <a href="/settings/profile" class="user-name">
-          <%= user?.name || 'User' %>
-        </a>
-        <span class="user-role">
-          <%= user?.roleName || user?.role || 'Member' %>
-        </span>
-      </div>
+          <%= user?.name || ' User' %>
+      </a>
+      <span class="user-role">
+        <%= user?.roleName || user?.role || 'Member' %>
+      </span>
     </div>
-  </nav>
+</div>
+</nav>
 </div>

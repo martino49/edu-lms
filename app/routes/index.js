@@ -10,6 +10,7 @@ const paymentRoutes = require('./paymentRoutes');
 const adminRoutes = require('./adminRoutes');
 const teacherRoutes = require('./teacherRoutes');
 const studentRoutes = require('./studentRoutes');
+const financeRoutes = require('./financeRoutes');
 const staticRoutes = require('./staticRoutes');
 
 // Mount routes
@@ -21,12 +22,13 @@ router.use('/payments', paymentRoutes);
 router.use('/admin', adminRoutes);
 router.use('/teacher', teacherRoutes);
 router.use('/student', studentRoutes);
+router.use('/finance', financeRoutes);
 router.use('/', staticRoutes);
 
 // Health check route
 router.get('/health', (req, res) => {
-    res.status(200).json({ 
-        status: 'OK', 
+    res.status(200).json({
+        status: 'OK',
         message: 'Server is running',
         timestamp: new Date().toISOString()
     });
@@ -34,7 +36,7 @@ router.get('/health', (req, res) => {
 
 // Catch-all route for undefined API endpoints
 router.use('*', (req, res) => {
-    res.status(404).json({ 
+    res.status(404).json({
         error: 'API endpoint not found',
         path: req.originalUrl
     });

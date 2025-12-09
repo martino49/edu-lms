@@ -159,7 +159,7 @@ exports.showStudentDashboard = async (req, res) => {
   try {
     const userId = req.session.userId;
     const data = await fetchStudentDashboard(userId);
-    
+
     res.render('dashboard/student', {
       title: 'Student Dashboard',
       user: {
@@ -319,19 +319,19 @@ async function fetchStudentDashboard(userId) {
     "SELECT COUNT(*) AS count FROM enrollments WHERE student_id = ?",
     [userId]
   );
-  
+
   const [[assignmentCount]] = await pool.query(`
     SELECT COUNT(*) AS count
     FROM assignments a
     JOIN enrollments e ON a.course_id = e.course_id
     WHERE e.student_id = ?
   `, [userId]);
-  
+
   const [[completedAssignments]] = await pool.query(
     "SELECT COUNT(*) AS count FROM submissions WHERE student_id = ? AND grade IS NOT NULL",
     [userId]
   );
-  
+
   const [[pendingAssignments]] = await pool.query(`
     SELECT COUNT(*) AS count
     FROM assignments a
@@ -412,10 +412,10 @@ async function fetchFinanceDashboard() {
     "SELECT COUNT(*) AS count FROM payments WHERE status = 'pending'"
   );
   const [recentPayments] = await pool.query(`
-    SELECT p.amount, p.paid_at, u.name AS student_name, p.method
+    SELECT p.amount, p.payment_date, u.name AS student_name, p.payment_method
     FROM payments p
     JOIN users u ON p.student_id = u.id
-    ORDER BY p.paid_at DESC
+    ORDER BY p.payment_date DESC
     LIMIT 10
   `);
 
