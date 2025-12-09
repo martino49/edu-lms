@@ -13,6 +13,8 @@ DROP TABLE IF EXISTS `audit_logs`;
 DROP TABLE IF EXISTS `courses`;
 DROP TABLE IF EXISTS `users`;
 DROP TABLE IF EXISTS `roles`;
+DROP TABLE IF EXISTS `payments`;
+DROP TABLE IF EXISTS `attendance`;
 DROP TABLE IF EXISTS `reports`;
 DROP TABLE IF EXISTS `announcements`;
 DROP TABLE IF EXISTS `settings`;
@@ -123,6 +125,42 @@ CREATE TABLE `reports` (
   `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`teacher_id`) REFERENCES `users`(`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ==========================================
+-- PAYMENTS TABLE
+-- ==========================================
+CREATE TABLE `payments` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `student_id` INT NOT NULL,
+  `course_id` INT NOT NULL,
+  `amount` DECIMAL(10,2) NOT NULL,
+  `payment_method` VARCHAR(50) DEFAULT 'credit_card',
+  `status` ENUM('pending','completed','failed','refunded') DEFAULT 'pending',
+  `transaction_id` VARCHAR(255),
+  `payment_date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`student_id`) REFERENCES `users`(`id`) ON DELETE CASCADE,
+  FOREIGN KEY (`course_id`) REFERENCES `courses`(`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ==========================================
+-- ATTENDANCE TABLE
+-- ==========================================
+CREATE TABLE `attendance` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `course_id` INT NOT NULL,
+  `student_id` INT NOT NULL,
+  `date` DATE NOT NULL,
+  `status` ENUM('present','absent','late','excused') NOT NULL DEFAULT 'present',
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_daily_attendance` (`course_id`, `student_id`, `date`),
+  FOREIGN KEY (`course_id`) REFERENCES `courses`(`id`) ON DELETE CASCADE,
+  FOREIGN KEY (`student_id`) REFERENCES `users`(`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ==========================================

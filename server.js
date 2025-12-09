@@ -95,13 +95,13 @@ app.use((req, res, next) => {
         req.user = null;
     }
     res.locals.user = req.user || null;
-    
+
     // Make flash messages available to all templates
     res.locals.success_msg = req.flash('success_msg');
     res.locals.error_msg = req.flash('error_msg');
     res.locals.info_msg = req.flash('info_msg');
     res.locals.warning_msg = req.flash('warning_msg');
-    
+
     next();
 });
 
@@ -127,6 +127,8 @@ app.use('/courses', courseRoutes);
 app.use('/assignments', assignmentRoutes);
 app.use('/settings', settingsRoutes);
 app.use('/teacher', teacherRoutes); // Teacher routes
+app.use('/payments', require('./app/routes/paymentRoutes')); // Payment routes
+app.use('/attendance', require('./app/routes/attendanceRoutes')); // Attendance routes
 
 // Protected routes with role restrictions
 app.use('/admin', roleMiddleware.restrictTo('Super Admin', 'Admin'), adminRoutes);

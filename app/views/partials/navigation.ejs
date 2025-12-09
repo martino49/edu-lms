@@ -24,7 +24,7 @@
 
       <!-- Left Menu - Role-based Navigation -->
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <% if (user && user.role === 'student') { %>
+        <% if (user && user.role==='student' ) { %>
           <!-- Student Navigation -->
           <li class="nav-item">
             <a class="nav-link px-3<%= activePage === 'dashboard' ? ' active' : '' %>" href="/dashboard">
@@ -57,114 +57,134 @@
             </a>
           </li>
 
-        <% } else if (user && user.role === 'teacher') { %>
-          <!-- Teacher Navigation -->
           <li class="nav-item">
-            <a class="nav-link px-3<%= activePage === 'dashboard' ? ' active' : '' %>" href="/teacher">
-              <i class="fas fa-tachometer-alt me-1"></i>
-              <span class="nav-text">Teacher Dashboard</span>
+            <a class="nav-link px-3<%= activePage === 'attendance' ? ' active' : '' %>"
+              href="/attendance/my-attendance">
+              <i class="fas fa-calendar-check me-1"></i>
+              <span class="nav-text">My Attendance</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link px-3<%= activePage === 'courses' ? ' active' : '' %>" href="/teacher/courses">
-              <i class="fas fa-book me-1"></i>
-              <span class="nav-text">My Courses</span>
+            <a class="nav-link px-3<%= activePage === 'payments' ? ' active' : '' %>" href="/payments/student/history">
+              <i class="fas fa-credit-card me-1"></i>
+              <span class="nav-text">Payments</span>
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link px-3<%= activePage === 'assignments' ? ' active' : '' %>" href="/teacher/assignments">
-              <i class="fas fa-tasks me-1"></i>
-              <span class="nav-text">Assignments</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link px-3<%= activePage === 'submissions' ? ' active' : '' %>" href="/teacher/submissions">
-              <i class="fas fa-file-upload me-1"></i>
-              <span class="nav-text">Submissions</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link px-3<%= activePage === 'grades' ? ' active' : '' %>" href="/teacher/grades">
-              <i class="fas fa-chart-bar me-1"></i>
-              <span class="nav-text">Gradebook</span>
-            </a>
-          </li>
+          <% } else if (user && user.role==='teacher' ) { %>
+            <!-- Teacher Navigation -->
+            <li class="nav-item">
+              <a class="nav-link px-3<%= activePage === 'dashboard' ? ' active' : '' %>" href="/teacher">
+                <i class="fas fa-tachometer-alt me-1"></i>
+                <span class="nav-text">Teacher Dashboard</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link px-3<%= activePage === 'courses' ? ' active' : '' %>" href="/teacher/courses">
+                <i class="fas fa-book me-1"></i>
+                <span class="nav-text">My Courses</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link px-3<%= activePage === 'assignments' ? ' active' : '' %>" href="/teacher/assignments">
+                <i class="fas fa-tasks me-1"></i>
+                <span class="nav-text">Assignments</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link px-3<%= activePage === 'submissions' ? ' active' : '' %>" href="/teacher/submissions">
+                <i class="fas fa-file-upload me-1"></i>
+                <span class="nav-text">Submissions</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link px-3<%= activePage === 'grades' ? ' active' : '' %>" href="/teacher/grades">
+                <i class="fas fa-chart-bar me-1"></i>
+                <span class="nav-text">Gradebook</span>
+              </a>
+            </li>
 
-        <% } else if (user && user.role === 'admin') { %>
-          <!-- Admin Navigation -->
-          <li class="nav-item">
-            <a class="nav-link px-3<%= activePage === 'dashboard' ? ' active' : '' %>" href="/admin">
-              <i class="fas fa-tachometer-alt me-1"></i>
-              <span class="nav-text">Admin Dashboard</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link px-3<%= activePage === 'users' ? ' active' : '' %>" href="/admin/users">
-              <i class="fas fa-users me-1"></i>
-              <span class="nav-text">User Management</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link px-3<%= activePage === 'courses' ? ' active' : '' %>" href="/admin/courses">
-              <i class="fas fa-book me-1"></i>
-              <span class="nav-text">Course Management</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link px-3<%= activePage === 'analytics' ? ' active' : '' %>" href="/admin/analytics">
-              <i class="fas fa-chart-pie me-1"></i>
-              <span class="nav-text">Analytics</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link px-3<%= activePage === 'settings' ? ' active' : '' %>" href="/admin/settings">
-              <i class="fas fa-cog me-1"></i>
-              <span class="nav-text">System Settings</span>
-            </a>
-          </li>
+            <% } else if (user && user.role==='admin' ) { %>
+              <!-- Admin Navigation -->
+              <li class="nav-item">
+                <a class="nav-link px-3<%= activePage === 'dashboard' ? ' active' : '' %>" href="/admin">
+                  <i class="fas fa-tachometer-alt me-1"></i>
+                  <span class="nav-text">Admin Dashboard</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link px-3<%= activePage === 'users' ? ' active' : '' %>" href="/admin/users">
+                  <i class="fas fa-users me-1"></i>
+                  <span class="nav-text">User Management</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link px-3<%= activePage === 'courses' ? ' active' : '' %>" href="/admin/courses">
+                  <i class="fas fa-book me-1"></i>
+                  <span class="nav-text">Course Management</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link px-3<%= activePage === 'analytics' ? ' active' : '' %>" href="/admin/analytics">
+                  <i class="fas fa-chart-pie me-1"></i>
+                  <span class="nav-text">Analytics</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link px-3<%= activePage === 'settings' ? ' active' : '' %>" href="/admin/settings">
+                  <i class="fas fa-cog me-1"></i>
+                  <span class="nav-text">System Settings</span>
+                </a>
+              </li>
 
-        <% } else { %>
-          <!-- Guest/Default Navigation -->
-          <li class="nav-item">
-            <a class="nav-link px-3<%= activePage === 'home' ? ' active' : '' %>" href="/">
-              <i class="fas fa-home me-1"></i>
-              <span class="nav-text">Home</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link px-3<%= activePage === 'courses' ? ' active' : '' %>" href="/courses">
-              <i class="fas fa-book me-1"></i>
-              <span class="nav-text">Browse Courses</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link px-3<%= activePage === 'about' ? ' active' : '' %>" href="../about">
-              <i class="fas fa-info-circle me-1"></i>
-              <span class="nav-text">About</span>
-            </a>
-          </li>
-        <% } %>
+              <% } else { %>
+                <!-- Guest/Default Navigation -->
+                <li class="nav-item">
+                  <a class="nav-link px-3<%= activePage === 'home' ? ' active' : '' %>" href="/">
+                    <i class="fas fa-home me-1"></i>
+                    <span class="nav-text">Home</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link px-3<%= activePage === 'courses' ? ' active' : '' %>" href="/courses">
+                    <i class="fas fa-book me-1"></i>
+                    <span class="nav-text">Browse Courses</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link px-3<%= activePage === 'about' ? ' active' : '' %>" href="../about">
+                    <i class="fas fa-info-circle me-1"></i>
+                    <span class="nav-text">About</span>
+                  </a>
+                </li>
+                <% } %>
 
-        <!-- Quick Actions Dropdown for Teachers and Admins -->
-        <% if (user && (user.role === 'teacher' || user.role === 'admin')) { %>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle px-3<%= activePage === 'quick-actions' ? ' active' : '' %>" href="javascript:void(0)" role="button" data-bs-toggle="dropdown">
-            <i class="fas fa-plus-circle me-1"></i>
-            <span class="nav-text">Quick Actions</span>
-          </a>
-          <ul class="dropdown-menu shadow-sm">
-            <% if (user.role === 'teacher') { %>
-              <li><a class="dropdown-item" href="/teacher/courses/create"><i class="fas fa-book-medical me-2 text-success"></i>Create Course</a></li>
-              <li><a class="dropdown-item" href="/teacher/assignments/create"><i class="fas fa-tasks me-2 text-primary"></i>Create Assignment</a></li>
-              <li><a class="dropdown-item" href="/teacher/announcements"><i class="fas fa-bullhorn me-2 text-warning"></i>Post Announcement</a></li>
-            <% } else if (user.role === 'admin') { %>
-              <li><a class="dropdown-item" href="/admin/users/create"><i class="fas fa-user-plus me-2 text-info"></i>Add User</a></li>
-              <li><a class="dropdown-item" href="/admin/courses/create"><i class="fas fa-book-medical me-2 text-success"></i>Create Course</a></li>
-              <li><a class="dropdown-item" href="/admin/announcements"><i class="fas fa-bullhorn me-2 text-warning"></i>System Announcement</a></li>
-            <% } %>
-          </ul>
-        </li>
-        <% } %>
+                  <!-- Quick Actions Dropdown for Teachers and Admins -->
+                  <% if (user && (user.role==='teacher' || user.role==='admin' )) { %>
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle px-3<%= activePage === 'quick-actions' ? ' active' : '' %>"
+                        href="javascript:void(0)" role="button" data-bs-toggle="dropdown">
+                        <i class="fas fa-plus-circle me-1"></i>
+                        <span class="nav-text">Quick Actions</span>
+                      </a>
+                      <ul class="dropdown-menu shadow-sm">
+                        <% if (user.role==='teacher' ) { %>
+                          <li><a class="dropdown-item" href="/teacher/courses/create"><i
+                                class="fas fa-book-medical me-2 text-success"></i>Create Course</a></li>
+                          <li><a class="dropdown-item" href="/teacher/assignments/create"><i
+                                class="fas fa-tasks me-2 text-primary"></i>Create Assignment</a></li>
+                          <li><a class="dropdown-item" href="/teacher/announcements"><i
+                                class="fas fa-bullhorn me-2 text-warning"></i>Post Announcement</a></li>
+                          <% } else if (user.role==='admin' ) { %>
+                            <li><a class="dropdown-item" href="/admin/users/create"><i
+                                  class="fas fa-user-plus me-2 text-info"></i>Add User</a></li>
+                            <li><a class="dropdown-item" href="/admin/courses/create"><i
+                                  class="fas fa-book-medical me-2 text-success"></i>Create Course</a></li>
+                            <li><a class="dropdown-item" href="/admin/announcements"><i
+                                  class="fas fa-bullhorn me-2 text-warning"></i>System Announcement</a></li>
+                            <% } %>
+                      </ul>
+                    </li>
+                    <% } %>
       </ul>
 
       <!-- Right Menu -->
@@ -181,9 +201,11 @@
 
         <!-- Notifications -->
         <li class="nav-item dropdown notification-container">
-          <a class="nav-link position-relative" href="javascript:void(0)" id="notificationDropdown" role="button" data-bs-toggle="dropdown">
+          <a class="nav-link position-relative" href="javascript:void(0)" id="notificationDropdown" role="button"
+            data-bs-toggle="dropdown">
             <i class="fas fa-bell fa-lg"></i>
-            <span id="notificationBadge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
+            <span id="notificationBadge"
+              class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
           </a>
           <ul class="dropdown-menu dropdown-menu-end shadow notification-dropdown">
             <li class="dropdown-header bg-primary text-white">
@@ -200,26 +222,28 @@
                 <a class="dropdown-item text-center view-all-link" href="/<%= user.role %>/notifications">
                   <i class="fas fa-list me-1"></i>View All Notifications
                 </a>
-              <% } else { %>
-                <a class="dropdown-item text-center view-all-link" href="/notifications">
-                  <i class="fas fa-list me-1"></i>View All Notifications
-                </a>
-              <% } %>
+                <% } else { %>
+                  <a class="dropdown-item text-center view-all-link" href="/notifications">
+                    <i class="fas fa-list me-1"></i>View All Notifications
+                  </a>
+                  <% } %>
             </li>
           </ul>
         </li>
 
         <!-- User Profile -->
         <li class="nav-item dropdown profile-container">
-          <a class="nav-link dropdown-toggle d-flex align-items-center user-profile-link" href="javascript:void(0)" role="button" data-bs-toggle="dropdown">
+          <a class="nav-link dropdown-toggle d-flex align-items-center user-profile-link" href="javascript:void(0)"
+            role="button" data-bs-toggle="dropdown">
             <div class="user-avatar me-2">
               <% if (user && user.avatar) { %>
-                <img src="<%= user.avatar %>" alt="Profile" class="rounded-circle" style="width: 32px; height: 32px; object-fit: cover;">
-              <% } else { %>
-                <div class="avatar-placeholder rounded-circle d-flex align-items-center justify-content-center" style="width: 32px; height: 32px; background: linear-gradient(135deg, #D4AF37 0%, #FFD700 100%);">
-                  <% if (user && user.name) { %>
-                    <%
-                      const parts = user.name.split(' ');
+                <img src="<%= user.avatar %>" alt="Profile" class="rounded-circle"
+                  style="width: 32px; height: 32px; object-fit: cover;">
+                <% } else { %>
+                  <div class="avatar-placeholder rounded-circle d-flex align-items-center justify-content-center"
+                    style="width: 32px; height: 32px; background: linear-gradient(135deg, #D4AF37 0%, #FFD700 100%);">
+                    <% if (user && user.name) { %>
+                      <% const parts=user.name.split(' ');
                       const initials = parts.map(p => p[0]).join('').toUpperCase().substring(0, 2);
                     %>
                     <span style="font-size: 0.8rem; font-weight: 700; color: #252838;"><%= initials %></span>
@@ -259,491 +283,527 @@
                   <% } %>
                 </div>
                 <div>
-                  <div class="fw-bold"><%= user ? user.name : 'Guest' %></div>
-                  <small class="opacity-75"><%= user ? user.email : '' %></small>
-                  <div class="role-badge-lg role-<%= user ? user.role : 'guest' %> mt-1"><%= user ? user.role : 'Guest' %></div>
-                </div>
-              </div>
-            </li>
-            <li><hr class="dropdown-divider m-0"></li>
-            <li><a class="dropdown-item" href="/settings/profile"><i class="fas fa-user me-2 text-primary"></i>My Profile</a></li>
-            <li><a class="dropdown-item" href="/settings"><i class="fas fa-cog me-2 text-secondary"></i>Settings</a></li>
-            <li><a class="dropdown-item" href="/settings/help"><i class="fas fa-question-circle me-2 text-info"></i>Help & Support</a></li>
-            <li><hr class="dropdown-divider m-0"></li>
-            <li><a class="dropdown-item text-danger" href="/auth/logout"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
-          </ul>
-        </li>
-      </ul>
+                  <div class="fw-bold"><%= user ? user.name : ' Guest' %>
+                  </div>
+                  <small class="opacity-75">
+                    <%= user ? user.email : '' %>
+                  </small>
+                  <div class="role-badge-lg role-<%= user ? user.role : 'guest' %> mt-1">
+                    <%= user ? user.role : 'Guest' %>
+                  </div>
+            </div>
     </div>
+    </li>
+    <li>
+      <hr class="dropdown-divider m-0">
+    </li>
+    <li><a class="dropdown-item" href="/settings/profile"><i class="fas fa-user me-2 text-primary"></i>My Profile</a>
+    </li>
+    <li><a class="dropdown-item" href="/settings"><i class="fas fa-cog me-2 text-secondary"></i>Settings</a></li>
+    <li><a class="dropdown-item" href="/settings/help"><i class="fas fa-question-circle me-2 text-info"></i>Help &
+        Support</a></li>
+    <li>
+      <hr class="dropdown-divider m-0">
+    </li>
+    <li><a class="dropdown-item text-danger" href="/auth/logout"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+    </ul>
+    </li>
+    </ul>
+  </div>
   </div>
 </nav>
 
 <style>
-:root {
-  --primary: #1f3a93;
-  --secondary: #4a69bd;
-  --success: #27ae60;
-  --info: #16a085;
-  --warning: #f39c12;
-  --danger: #c0392b;
-  --gold: #FFD700;
-}
-
-[data-theme="dark"] {
-  --primary: #3a6bc9;
-  --primary-dark: #2c5aa0;
-  --secondary: #6c757d;
-  --light: #212529;
-  --dark: #f8f9fa;
-}
-
-/* Base Navbar Styles */
-.gradient-navbar { 
-  background: linear-gradient(135deg, var(--primary), var(--secondary)); 
-  transition: all 0.4s ease; 
-  padding: 0.5rem 0;
-  border-bottom: 3px solid var(--gold);
-  box-shadow: 0 4px 20px rgba(31, 58, 147, 0.3);
-  backdrop-filter: blur(10px);
-}
-
-/* Header Container - Brand + Toggle */
-.navbar-header-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.navbar-brand {
-  font-size: 1.5rem;
-  transition: transform 0.3s ease;
-  margin-right: auto;
-  position: relative;
-  padding: 0.5rem 1rem;
-  border-radius: 12px;
-}
-
-.navbar-brand:hover {
-  transform: scale(1.05);
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.brand-glow {
-  display: inline-block;
-  animation: gentlePulse 4s infinite;
-}
-
-@keyframes gentlePulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-  100% { transform: scale(1); }
-}
-
-.brand-text {
-  font-weight: 700;
-  background: linear-gradient(45deg, #ffffff, var(--gold));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.tagline {
-  font-style: italic;
-  opacity: 0.8;
-  transition: opacity 0.3s ease;
-}
-
-.navbar-brand:hover .tagline {
-  opacity: 1;
-}
-
-.text-gold {
-  color: var(--gold) !important;
-}
-
-/* Main Navbar Layout */
-.navbar .container-fluid {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 1rem;
-}
-
-/* Left Menu Positioning */
-.navbar-nav.me-auto {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-/* Right Menu Container */
-.right-menu-container {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-left: auto;
-}
-
-/* Individual Right Menu Items */
-.theme-container,
-.notification-container,
-.profile-container {
-  display: flex;
-  align-items: center;
-}
-
-/* Navigation Links */
-.navbar .nav-link { 
-  color: rgba(255, 255, 255, 0.9); 
-  padding: 10px 15px; 
-  border-radius: 8px; 
-  transition: all 0.3s ease; 
-  font-weight: 500;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  white-space: nowrap;
-}
-
-.navbar .nav-link::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 0;
-  height: 2px;
-  background: var(--gold);
-  transition: all 0.3s ease;
-  transform: translateX(-50%);
-}
-
-.navbar .nav-link:hover::before {
-  width: 80%;
-}
-
-.navbar .nav-link:hover { 
-  color: var(--gold); 
-  background: rgba(255, 215, 0, 0.1); 
-  transform: translateY(-2px);
-}
-
-.navbar .nav-link.active { 
-  background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1)); 
-  color: var(--gold); 
-  font-weight: 600;
-  border: 1px solid rgba(255, 215, 0, 0.3);
-  box-shadow: 0 4px 8px rgba(255, 215, 0, 0.2);
-}
-
-.navbar .nav-link.active::before {
-  width: 80%;
-  background: var(--gold);
-}
-
-/* Enhanced User Profile with Gold Theme */
-.user-profile-link {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 25px;
-  padding: 0.5rem 1rem !important;
-  transition: all 0.3s ease;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.user-profile-link:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-  border-color: rgba(212, 175, 55, 0.3);
-}
-
-.role-badge {
-  font-size: 0.65rem;
-  padding: 0.2rem 0.5rem;
-  border-radius: 12px;
-  text-transform: uppercase;
-  font-weight: 700;
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
-}
-
-.role-badge-lg {
-  font-size: 0.75rem;
-  padding: 0.3rem 0.75rem;
-  border-radius: 15px;
-  text-transform: uppercase;
-  font-weight: 700;
-  display: inline-block;
-  background: rgba(255, 255, 255, 0.25);
-  color: white;
-}
-
-.role-teacher { background: linear-gradient(135deg, var(--gold), #B8860B); }
-.role-admin { background: linear-gradient(135deg, #9b59b6, #8e44ad); }
-.role-student { background: linear-gradient(135deg, var(--info), #16a085); }
-
-/* Enhanced Dropdown Styling */
-.dropdown-menu { 
-  background: linear-gradient(135deg, #1e293b, #2d3748);
-  border-radius: 12px; 
-  padding: 0.5rem 0; 
-  border: 1px solid rgba(212, 175, 55, 0.2);
-  min-width: 220px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(10px);
-}
-
-.dropdown-header {
-  border-radius: 12px 12px 0 0;
-  padding: 0.75rem 1rem;
-  font-weight: 600;
-  background: linear-gradient(135deg, var(--primary), var(--secondary)) !important;
-}
-
-.dropdown-item {
-  padding: 0.75rem 1rem;
-  color: #FDF6E3;
-  transition: all 0.2s ease;
-  font-weight: 500;
-}
-
-.dropdown-item:hover {
-  background: rgba(212, 175, 55, 0.1);
-  color: var(--gold);
-  transform: translateX(5px);
-}
-
-/* Enhanced Theme Switch */
-.theme-switch { 
-  position: relative; 
-  display: inline-block; 
-  width: 52px; 
-  height: 26px; 
-}
-
-.theme-switch input { 
-  opacity: 0; 
-  width: 0; 
-  height: 0; 
-}
-
-.theme-slider { 
-  position: absolute; 
-  cursor: pointer; 
-  top: 0; 
-  left: 0; 
-  right: 0; 
-  bottom: 0; 
-  background: linear-gradient(135deg, var(--gold), #B8860B);
-  transition: .4s; 
-  border-radius: 34px; 
-  border: 2px solid rgba(212, 175, 55, 0.3);
-}
-
-.theme-slider:before { 
-  position: absolute; 
-  content: ""; 
-  height: 18px; 
-  width: 18px; 
-  left: 2px; 
-  bottom: 2px; 
-  background: linear-gradient(135deg, #FFF8DC, #ffffff);
-  transition: .4s; 
-  border-radius: 50%; 
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-input:checked + .theme-slider { 
-  background: linear-gradient(135deg, #4a5568, #2d3748); 
-}
-
-input:checked + .theme-slider:before { 
-  transform: translateX(26px); 
-  background: linear-gradient(135deg, #cbd5e0, #a0aec0);
-}
-
-/* Notification Dropdown */
-.notification-dropdown {
-  width: min(350px, 90vw);
-  max-height: 400px;
-  overflow-y: auto;
-}
-
-.notification-content {
-  max-height: 300px;
-  overflow-y: auto;
-}
-
-/* Badge Positioning */
-.badge {
-  font-size: 0.65rem;
-  padding: 0.35rem 0.5rem;
-  min-width: 20px;
-  height: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transform: translate(-60%, -40%);
-  font-weight: 700;
-  border: 2px solid var(--primary);
-}
-
-/* ========== RESPONSIVE DESIGN ========== */
-
-/* Tablet (992px - 1199px) */
-@media (max-width: 1199.98px) {
-  .navbar .container-fluid {
-    gap: 0.75rem;
+  :root {
+    --primary: #1f3a93;
+    --secondary: #4a69bd;
+    --success: #27ae60;
+    --info: #16a085;
+    --warning: #f39c12;
+    --danger: #c0392b;
+    --gold: #FFD700;
   }
-  
-  .nav-link {
-    padding: 0.6rem 0.8rem;
-    font-size: 0.85rem;
-  }
-}
 
-/* Mobile Landscape (768px - 991px) */
-@media (max-width: 991.98px) {
+  [data-theme="dark"] {
+    --primary: #3a6bc9;
+    --primary-dark: #2c5aa0;
+    --secondary: #6c757d;
+    --light: #212529;
+    --dark: #f8f9fa;
+  }
+
+  /* Base Navbar Styles */
+  .gradient-navbar {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    transition: all 0.4s ease;
+    padding: 0.5rem 0;
+    border-bottom: 3px solid var(--gold);
+    box-shadow: 0 4px 20px rgba(31, 58, 147, 0.3);
+    backdrop-filter: blur(10px);
+  }
+
+  /* Header Container - Brand + Toggle */
   .navbar-header-container {
-    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
   }
-  
+
+  .navbar-brand {
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+    margin-right: auto;
+    position: relative;
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
+  }
+
+  .navbar-brand:hover {
+    transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .brand-glow {
+    display: inline-block;
+    animation: gentlePulse 4s infinite;
+  }
+
+  @keyframes gentlePulse {
+    0% {
+      transform: scale(1);
+    }
+
+    50% {
+      transform: scale(1.1);
+    }
+
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  .brand-text {
+    font-weight: 700;
+    background: linear-gradient(45deg, #ffffff, var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .tagline {
+    font-style: italic;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+  }
+
+  .navbar-brand:hover .tagline {
+    opacity: 1;
+  }
+
+  .text-gold {
+    color: var(--gold) !important;
+  }
+
+  /* Main Navbar Layout */
   .navbar .container-fluid {
-    flex-direction: row;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  /* Left Menu Positioning */
+  .navbar-nav.me-auto {
+    display: flex;
     align-items: center;
     gap: 0.5rem;
   }
-  
-  .right-menu-container {
-    width: auto;
-    margin: 0;
-  }
-  
-  .notification-dropdown {
-    width: 300px;
-    right: 0 !important;
-    left: auto !important;
-  }
-}
 
-/* Mobile Portrait (576px - 767px) */
-@media (max-width: 767.98px) {
-  .nav-link {
-    padding: 0.5rem 0.75rem;
-    font-size: 0.8rem;
-  }
-  
-  .user-name {
-    display: none !important;
-  }
-  
-  .notification-dropdown {
-    width: 280px;
-  }
-  
+  /* Right Menu Container */
   .right-menu-container {
-    gap: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-left: auto;
   }
-  
-  .theme-label {
-    display: none !important;
-  }
-}
 
-/* Small Mobile (< 576px) */
-@media (max-width: 575.98px) {
-  .navbar-brand {
-    font-size: 1.3rem;
+  /* Individual Right Menu Items */
+  .theme-container,
+  .notification-container,
+  .profile-container {
+    display: flex;
+    align-items: center;
   }
-  
-  .nav-text {
-    display: none;
+
+  /* Navigation Links */
+  .navbar .nav-link {
+    color: rgba(255, 255, 255, 0.9);
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
   }
-  
-  .nav-link i {
-    margin-right: 0 !important;
-    font-size: 1rem;
+
+  .navbar .nav-link::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--gold);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
   }
-  
-  .notification-dropdown {
-    width: 250px;
+
+  .navbar .nav-link:hover::before {
+    width: 80%;
   }
-  
+
+  .navbar .nav-link:hover {
+    color: var(--gold);
+    background: rgba(255, 215, 0, 0.1);
+    transform: translateY(-2px);
+  }
+
+  .navbar .nav-link.active {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1));
+    color: var(--gold);
+    font-weight: 600;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    box-shadow: 0 4px 8px rgba(255, 215, 0, 0.2);
+  }
+
+  .navbar .nav-link.active::before {
+    width: 80%;
+    background: var(--gold);
+  }
+
+  /* Enhanced User Profile with Gold Theme */
   .user-profile-link {
-    padding: 0.4rem 0.8rem !important;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 25px;
+    padding: 0.5rem 1rem !important;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
   }
-}
 
-/* Animation for dropdowns */
-@keyframes slideDown {
-  from {
+  .user-profile-link:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    border-color: rgba(212, 175, 55, 0.3);
+  }
+
+  .role-badge {
+    font-size: 0.65rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 12px;
+    text-transform: uppercase;
+    font-weight: 700;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+  }
+
+  .role-badge-lg {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.75rem;
+    border-radius: 15px;
+    text-transform: uppercase;
+    font-weight: 700;
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.25);
+    color: white;
+  }
+
+  .role-teacher {
+    background: linear-gradient(135deg, var(--gold), #B8860B);
+  }
+
+  .role-admin {
+    background: linear-gradient(135deg, #9b59b6, #8e44ad);
+  }
+
+  .role-student {
+    background: linear-gradient(135deg, var(--info), #16a085);
+  }
+
+  /* Enhanced Dropdown Styling */
+  .dropdown-menu {
+    background: linear-gradient(135deg, #1e293b, #2d3748);
+    border-radius: 12px;
+    padding: 0.5rem 0;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    min-width: 220px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+  }
+
+  .dropdown-header {
+    border-radius: 12px 12px 0 0;
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+    background: linear-gradient(135deg, var(--primary), var(--secondary)) !important;
+  }
+
+  .dropdown-item {
+    padding: 0.75rem 1rem;
+    color: #FDF6E3;
+    transition: all 0.2s ease;
+    font-weight: 500;
+  }
+
+  .dropdown-item:hover {
+    background: rgba(212, 175, 55, 0.1);
+    color: var(--gold);
+    transform: translateX(5px);
+  }
+
+  /* Enhanced Theme Switch */
+  .theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 52px;
+    height: 26px;
+  }
+
+  .theme-switch input {
     opacity: 0;
-    transform: translateY(-10px);
+    width: 0;
+    height: 0;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  .theme-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, var(--gold), #B8860B);
+    transition: .4s;
+    border-radius: 34px;
+    border: 2px solid rgba(212, 175, 55, 0.3);
   }
-}
 
-.dropdown-menu {
-  animation: slideDown 0.3s ease;
-}
+  .theme-slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 2px;
+    bottom: 2px;
+    background: linear-gradient(135deg, #FFF8DC, #ffffff);
+    transition: .4s;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
 
-/* Badge Pulse Animation */
-@keyframes pulse {
-  0% { transform: translate(-60%, -40%) scale(1); }
-  50% { transform: translate(-60%, -40%) scale(1.1); }
-  100% { transform: translate(-60%, -40%) scale(1); }
-}
+  input:checked+.theme-slider {
+    background: linear-gradient(135deg, #4a5568, #2d3748);
+  }
 
-.badge.pulse {
-  animation: pulse 2s infinite;
-}
+  input:checked+.theme-slider:before {
+    transform: translateX(26px);
+    background: linear-gradient(135deg, #cbd5e0, #a0aec0);
+  }
+
+  /* Notification Dropdown */
+  .notification-dropdown {
+    width: min(350px, 90vw);
+    max-height: 400px;
+    overflow-y: auto;
+  }
+
+  .notification-content {
+    max-height: 300px;
+    overflow-y: auto;
+  }
+
+  /* Badge Positioning */
+  .badge {
+    font-size: 0.65rem;
+    padding: 0.35rem 0.5rem;
+    min-width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translate(-60%, -40%);
+    font-weight: 700;
+    border: 2px solid var(--primary);
+  }
+
+  /* ========== RESPONSIVE DESIGN ========== */
+
+  /* Tablet (992px - 1199px) */
+  @media (max-width: 1199.98px) {
+    .navbar .container-fluid {
+      gap: 0.75rem;
+    }
+
+    .nav-link {
+      padding: 0.6rem 0.8rem;
+      font-size: 0.85rem;
+    }
+  }
+
+  /* Mobile Landscape (768px - 991px) */
+  @media (max-width: 991.98px) {
+    .navbar-header-container {
+      width: auto;
+    }
+
+    .navbar .container-fluid {
+      flex-direction: row;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .right-menu-container {
+      width: auto;
+      margin: 0;
+    }
+
+    .notification-dropdown {
+      width: 300px;
+      right: 0 !important;
+      left: auto !important;
+    }
+  }
+
+  /* Mobile Portrait (576px - 767px) */
+  @media (max-width: 767.98px) {
+    .nav-link {
+      padding: 0.5rem 0.75rem;
+      font-size: 0.8rem;
+    }
+
+    .user-name {
+      display: none !important;
+    }
+
+    .notification-dropdown {
+      width: 280px;
+    }
+
+    .right-menu-container {
+      gap: 0.75rem;
+    }
+
+    .theme-label {
+      display: none !important;
+    }
+  }
+
+  /* Small Mobile (< 576px) */
+  @media (max-width: 575.98px) {
+    .navbar-brand {
+      font-size: 1.3rem;
+    }
+
+    .nav-text {
+      display: none;
+    }
+
+    .nav-link i {
+      margin-right: 0 !important;
+      font-size: 1rem;
+    }
+
+    .notification-dropdown {
+      width: 250px;
+    }
+
+    .user-profile-link {
+      padding: 0.4rem 0.8rem !important;
+    }
+  }
+
+  /* Animation for dropdowns */
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .dropdown-menu {
+    animation: slideDown 0.3s ease;
+  }
+
+  /* Badge Pulse Animation */
+  @keyframes pulse {
+    0% {
+      transform: translate(-60%, -40%) scale(1);
+    }
+
+    50% {
+      transform: translate(-60%, -40%) scale(1.1);
+    }
+
+    100% {
+      transform: translate(-60%, -40%) scale(1);
+    }
+  }
+
+  .badge.pulse {
+    animation: pulse 2s infinite;
+  }
 </style>
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-  // Theme Toggle
-  const toggle = document.getElementById('themeToggle');
-  const currentTheme = localStorage.getItem('theme') || 'light';
-  
-  if (currentTheme === 'dark') {
-    toggle.checked = true;
-    document.documentElement.setAttribute('data-theme', 'dark');
-    document.body.classList.add('dark-theme');
-  }
+  document.addEventListener('DOMContentLoaded', () => {
+    // Theme Toggle
+    const toggle = document.getElementById('themeToggle');
+    const currentTheme = localStorage.getItem('theme') || 'light';
 
-  toggle.addEventListener('change', () => {
-    if (toggle.checked) {
+    if (currentTheme === 'dark') {
+      toggle.checked = true;
       document.documentElement.setAttribute('data-theme', 'dark');
       document.body.classList.add('dark-theme');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.documentElement.removeAttribute('data-theme');
-      document.body.classList.remove('dark-theme');
-      localStorage.setItem('theme', 'light');
     }
-  });
 
-  // Load notifications
-  const loadNotifications = async () => {
-    try {
-      const role = "<%= user ? user.role : 'guest' %>";
-      const response = await fetch(`/${role}/notifications/count`);
-      const data = await response.json();
-      
-      const badge = document.getElementById('notificationBadge');
-      badge.textContent = data.count || 0;
-      
-      if (data.count > 0) {
-        badge.classList.add('pulse');
+    toggle.addEventListener('change', () => {
+      if (toggle.checked) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        document.body.classList.add('dark-theme');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+        document.body.classList.remove('dark-theme');
+        localStorage.setItem('theme', 'light');
       }
-      
-      const notifContainer = document.getElementById('notifications');
-      if (data.notifications?.length) {
-        notifContainer.innerHTML = data.notifications.map(n => `
+    });
+
+    // Load notifications
+    const loadNotifications = async () => {
+      try {
+        const role = "<%= user ? user.role : 'guest' %>";
+        const response = await fetch(`/${role}/notifications/count`);
+        const data = await response.json();
+
+        const badge = document.getElementById('notificationBadge');
+        badge.textContent = data.count || 0;
+
+        if (data.count > 0) {
+          badge.classList.add('pulse');
+        }
+
+        const notifContainer = document.getElementById('notifications');
+        if (data.notifications?.length) {
+          notifContainer.innerHTML = data.notifications.map(n => `
           <a class="dropdown-item d-flex align-items-start py-2" href="${n.link}">
             <i class="fas fa-${n.icon || 'bell'} mt-1 me-2 text-${n.type || 'warning'}"></i>
             <div class="flex-grow-1">
@@ -753,16 +813,16 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
           </a>
         `).join('');
+        }
+      } catch (error) {
+        console.error('Failed to load notifications:', error);
       }
-    } catch (error) {
-      console.error('Failed to load notifications:', error);
-    }
-  };
+    };
 
-  // Initialize notifications
-  loadNotifications();
-  
-  // Auto-refresh notifications every 30 seconds
-  setInterval(loadNotifications, 30000);
-});
+    // Initialize notifications
+    loadNotifications();
+
+    // Auto-refresh notifications every 30 seconds
+    setInterval(loadNotifications, 30000);
+  });
 </script>

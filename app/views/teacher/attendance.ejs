@@ -1,0 +1,78 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar') %>
+
+<div class="container mt-4">
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="/teacher/courses">Courses</a></li>
+                    <li class="breadcrumb-item active">Attendance</li>
+                </ol>
+            </nav>
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>Attendance: <%= course.title %></h2>
+                <form class="d-flex" action="" method="GET">
+                    <input type="date" name="date" class="form-control me-2" value="<%= date %>" onchange="this.form.submit()">
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <% if (students.length === 0) { %>
+        <div class="alert alert-info">No students enrolled in this course.</div>
+    <% } else { %>
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <form action="/attendance/course/<%= course.id %>" method="POST">
+                    <input type="hidden" name="date" value="<%= date %>">
+                    
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Student Name</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% students.forEach(student => { %>
+                                    <tr>
+                                        <td>
+                                            <div class="fw-bold"><%= student.name %></div>
+                                            <div class="text-muted small"><%= student.email %></div>
+                                        </td>
+                                        <td>
+                                            <div class="btn-group" role="group">
+                                                <% ['present', 'absent', 'late', 'excused'].forEach(status => { %>
+                                                    <input type="radio" class="btn-check" 
+                                                        name="attendance[<%= student.id %>]" 
+                                                        id="btn_<%= student.id %>_<%= status %>" 
+                                                        value="<%= status %>"
+                                                        <%= (attendanceMap[student.id] === status || (!attendanceMap[student.id] && status === 'present')) ? 'checked' : '' %>
+                                                    >
+                                                    <label class="btn btn-outline-<%= status === 'present' ? 'success' : (status === 'absent' ? 'danger' : (status === 'late' ? 'warning' : 'info')) %>" 
+                                                        for="btn_<%= student.id %>_<%= status %>">
+                                                        <%= status.charAt(0).toUpperCase() + status.slice(1) %>
+                                                    </label>
+                                                <% }); %>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <% }); %>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
+                        <a href="/teacher/courses" class="btn btn-secondary me-md-2">Cancel</a>
+                        <button type="submit" class="btn btn-primary">Save Attendance</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    <% } %>
+</div>
+
+<%- include('../partials/footer') %>

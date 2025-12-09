@@ -62,5 +62,21 @@ module.exports = {
             return res.status(400).send('Title and message are required');
         }
         next();
+    },
+
+    validatePayment: (req, res, next) => {
+        const { courseId, paymentMethod } = req.body;
+        if (!courseId || !paymentMethod) {
+            return res.status(400).json({ error: 'Missing courseId or paymentMethod' });
+        }
+        next();
+    },
+
+    validateRefund: (req, res, next) => {
+        const { reason } = req.body;
+        if (!reason) {
+            return res.status(400).json({ error: 'Refund reason is required' });
+        }
+        next();
     }
 };

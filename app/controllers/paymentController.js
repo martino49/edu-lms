@@ -16,6 +16,17 @@ const mockPaymentProcessor = {
                 });
             }, 1000);
         });
+    },
+    processRefund: async (refundData) => {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                resolve({
+                    success: true,
+                    transactionId: 'ref_' + Math.random().toString(36).substr(2, 9),
+                    message: 'Refund successful'
+                });
+            }, 1000);
+        });
     }
 };
 
@@ -69,7 +80,7 @@ const paymentController = {
             }
 
             // Log audit trail
-            await auditHelper.logAction(studentId, 'PAYMENT_PROCESS', 
+            await auditHelper.logAction(studentId, 'PAYMENT_PROCESS',
                 `Payment ${paymentResult.success ? 'successful' : 'failed'} for course: ${course.title}`,
                 courseId);
 
@@ -167,7 +178,7 @@ const paymentController = {
             await Payment.updateStatus(paymentId, 'refunded');
 
             // Log audit trail
-            await auditHelper.logAction(req.userId, 'PAYMENT_REFUND', 
+            await auditHelper.logAction(req.userId, 'PAYMENT_REFUND',
                 `Refund processed for payment ${paymentId}`, paymentId);
 
             res.json({
